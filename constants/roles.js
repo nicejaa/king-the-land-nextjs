@@ -1,0 +1,109 @@
+import { ALL_PERMISSIONS } from "./permissions";
+
+export const ROLES = {
+  SUPER_ADMIN: "SUPER_ADMIN",
+  PROJECT_MANAGER: "PROJECT_MANAGER",
+  SITE_ENGINEER: "SITE_ENGINEER",
+  CONTRACTOR: "CONTRACTOR",
+  CRAFTSMAN: "CRAFTSMAN",
+  OWNER: "OWNER",
+};
+
+export const ROLE_LABELS = {
+  SUPER_ADMIN: "Super Admin",
+  PROJECT_MANAGER: "Project Manager",
+  SITE_ENGINEER: "Site Engineer",
+  CONTRACTOR: "Contractor",
+  CRAFTSMAN: "Craftsman",
+  OWNER: "Owner",
+};
+
+/** Default permissions per role */
+export const ROLE_DEFAULT_PERMISSIONS = {
+  SUPER_ADMIN: ALL_PERMISSIONS,
+
+  PROJECT_MANAGER: [
+    "DASHBOARD_VIEW",
+    "PROJECT_VIEW",
+    "PROJECT_CREATE",
+    "PROJECT_UPDATE",
+    "LOCATION_VIEW",
+    "LOCATION_CREATE",
+    "LOCATION_UPDATE",
+    "CONTRACTOR_VIEW",
+    "CONTRACTOR_CREATE",
+    "CONTRACT_VIEW",
+    "CONTRACT_CREATE",
+    "CONTRACT_UPDATE",
+    "TASK_VIEW",
+    "TASK_CREATE",
+    "TASK_UPDATE",
+    "TASK_ASSIGN",
+    "DAILY_LOG_VIEW",
+    "INSPECTION_VIEW",
+    "DEFECT_VIEW",
+    "DEFECT_UPDATE",
+    "PR_VIEW",
+    "PR_APPROVE",
+    "PO_VIEW",
+    "PO_CREATE",
+    "PO_APPROVE",
+    "GR_VIEW",
+    "NOTIFICATION_VIEW",
+    "UPLOAD_FILE",
+  ],
+
+  SITE_ENGINEER: [
+    "DASHBOARD_VIEW",
+    "PROJECT_VIEW",
+    "LOCATION_VIEW",
+    "TASK_VIEW",
+    "TASK_UPDATE",
+    "DAILY_LOG_VIEW",
+    "DAILY_LOG_CREATE",
+    "DAILY_LOG_UPDATE",
+    "INSPECTION_VIEW",
+    "INSPECTION_CREATE",
+    "INSPECTION_VERIFY",
+    "DEFECT_VIEW",
+    "DEFECT_CREATE",
+    "DEFECT_UPDATE",
+    "DEFECT_VERIFY",
+    "PR_VIEW",
+    "PR_CREATE",
+    "PO_VIEW",
+    "GR_VIEW",
+    "GR_CREATE",
+    "NOTIFICATION_VIEW",
+    "UPLOAD_FILE",
+  ],
+
+  CONTRACTOR: [
+    "DASHBOARD_VIEW",
+    "TASK_VIEW",
+    "TASK_UPDATE",
+    "DEFECT_VIEW",
+    "NOTIFICATION_VIEW",
+    "UPLOAD_FILE",
+  ],
+
+  CRAFTSMAN: [
+    "TASK_VIEW",
+    "DEFECT_VIEW",
+    "NOTIFICATION_VIEW",
+    "UPLOAD_FILE",
+  ],
+
+  OWNER: [
+    "DASHBOARD_VIEW",
+    "PROJECT_VIEW",
+    "TASK_VIEW",
+    "DEFECT_VIEW",
+    "DAILY_LOG_VIEW",
+    "INSPECTION_VIEW",
+    "PR_VIEW",
+    "PO_VIEW",
+    "GR_VIEW",
+    "NOTIFICATION_VIEW",
+  ],
+};

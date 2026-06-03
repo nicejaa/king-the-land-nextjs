@@ -47,11 +47,15 @@ CREATE TYPE po_status AS ENUM (
   'CANCELLED'
 );
 
+ALTER TYPE user_role ADD VALUE IF NOT EXISTS 'CONTRACTOR_OWNER';
+ALTER TYPE user_role ADD VALUE IF NOT EXISTS 'QA';
+ALTER TYPE user_role ADD VALUE IF NOT EXISTS 'FOREMAN';
+
 
 CREATE TABLE users (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 
-  email VARCHAR(255) UNIQUE NOT NULL,
+  username VARCHAR(255) UNIQUE NOT NULL,
   password_hash TEXT NOT NULL,
 
   first_name VARCHAR(100),
@@ -121,7 +125,7 @@ CREATE TABLE contractors (
   contact_name VARCHAR(255),
 
   phone VARCHAR(50),
-  email VARCHAR(255),
+  username VARCHAR(255),
 
   address TEXT,
 
@@ -472,6 +476,17 @@ CREATE TABLE user_roles (
   PRIMARY KEY(user_id, role_id, project_id)
 );
 
+
+CREATE TABLE IF NOT EXISTS project_members (
+  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  project_id  UUID REFERENCES projects(id) ON DELETE CASCADE,
+  user_id     UUID REFERENCES users(id) ON DELETE CASCADE,
+  role        VARCHAR(50) NOT NULL,
+  joined_at   TIMESTAMP DEFAULT NOW(),
+  UNIQUE(project_id, user_id)
+);
+
+
 -- ========================================
 -- ROLE DESIGN (สำคัญ)
 -- SUPER_ADMIN
@@ -544,7 +559,7 @@ CREATE TABLE user_roles (
 -- U4	ABC Contractor	CONTRACTOR
 -- column สำคัญ
 -- field	meaning
--- email	login
+-- username	login
 -- password_hash	รหัสผ่านเข้ารหัส
 -- role	สิทธิ์หลัก
 -- is_active	ปิด user ได้
